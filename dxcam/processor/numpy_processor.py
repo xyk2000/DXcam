@@ -29,7 +29,7 @@ class NumpyProcessor(Processor):
         pitch = int(rect.Pitch)
 
         if rotation_angle in (0, 180):
-            size = pitch * height
+            size = pitch * min(region[3], height)
         else:
             size = pitch * width
 
@@ -39,9 +39,6 @@ class NumpyProcessor(Processor):
             image = np.ndarray((height, pitch, 4), dtype=np.uint8, buffer=buffer)
         elif rotation_angle in (90, 270):
             image = np.ndarray((width, pitch, 4), dtype=np.uint8, buffer=buffer)
-
-        if self.cvtcolor is not None:
-            image = self.cvtcolor(image)
 
         if rotation_angle == 90:
             image = np.rot90(image, axes=(1, 0))
@@ -58,4 +55,7 @@ class NumpyProcessor(Processor):
         if region[2] - region[0] != width or region[3] - region[1] != height:
             image = image[region[1] : region[3], region[0] : region[2], :]
 
+        if self.cvtcolor is not None:
+            image = self.cvtcolor(image)
+            
         return image
