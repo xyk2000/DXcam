@@ -12,7 +12,7 @@ title = "[DXcam] Capture benchmark"
 fps = 0
 camera = dxcam.create(output_idx=0)
 camera.start(target_fps=60)
-for i in range(1000):
+for _ in range(1000):
     image = camera.get_latest_frame()
 camera.stop()
 del camera

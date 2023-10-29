@@ -56,13 +56,7 @@ class StageSurface:
         self.texture.QueryInterface(IDXGISurface).Unmap()
 
     def __repr__(self) -> str:
-        repr = f"{self.width}, {self.height}, {self.dxgi_format}"
-        return repr
+        return f"{self.width}, {self.height}, {self.dxgi_format}"
 
     def __repr__(self) -> str:
-        return "<{} Initialized:{} Size:{} Format:{}>".format(
-            self.__class__.__name__,
-            self.texture is not None,
-            (self.width, self.height),
-            "DXGI_FORMAT_B8G8R8A8_UNORM",
-        )
+        return f"<{self.__class__.__name__} Initialized:{self.texture is not None} Size:{(self.width, self.height)} Format:DXGI_FORMAT_B8G8R8A8_UNORM>"

@@ -10,13 +10,13 @@ from dxcam.util.io import (
 class Singleton(type):
     _instances = {}
 
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+    def __call__(self, *args, **kwargs):
+        if self not in self._instances:
+            self._instances[self] = super(Singleton, self).__call__(*args, **kwargs)
         else:
-            print(f"Only 1 instance of {cls.__name__} is allowed.")
+            print(f"Only 1 instance of {self.__name__} is allowed.")
 
-        return cls._instances[cls]
+        return self._instances[self]
 
 
 class DXFactory(metaclass=Singleton):
@@ -80,10 +80,9 @@ class DXFactory(metaclass=Singleton):
         return camera
 
     def device_info(self) -> str:
-        ret = ""
-        for idx, device in enumerate(self.devices):
-            ret += f"Device[{idx}]:{device}\n"
-        return ret
+        return "".join(
+            f"Device[{idx}]:{device}\n" for idx, device in enumerate(self.devices)
+        )
 
     def output_info(self) -> str:
         ret = ""
