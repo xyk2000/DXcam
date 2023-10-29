@@ -24,7 +24,7 @@ def enum_dxgi_adapters() -> List[ctypes.POINTER(IDXGIAdapter1)]:
     create_dxgi_factory(IDXGIFactory1._iid_, ctypes.byref(pfactory))
     dxgi_factory = ctypes.POINTER(IDXGIFactory1)(pfactory.value)
     i = 0
-    p_adapters = list()
+    p_adapters = []
     while True:
         try:
             p_adapter = ctypes.POINTER(IDXGIAdapter1)()
@@ -43,7 +43,7 @@ def enum_dxgi_outputs(
     dxgi_adapter: ctypes.POINTER(IDXGIAdapter1),
 ) -> List[ctypes.POINTER(IDXGIOutput1)]:
     i = 0
-    p_outputs = list()
+    p_outputs = []
     while True:
         try:
             p_output = ctypes.POINTER(IDXGIOutput1)()

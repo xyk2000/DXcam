@@ -67,8 +67,7 @@ class DXCamera:
         if region is None:
             region = self.region
         self._validate_region(region)
-        frame = self._grab(region)
-        return frame
+        return self._grab(region)
 
     def _grab(self, region: Tuple[int, int, int, int]):
         if self._duplicator.update_frame():
@@ -243,10 +242,4 @@ class DXCamera:
         self.release()
 
     def __repr__(self) -> str:
-        return "<{}:\n\t{},\n\t{},\n\t{},\n\t{}\n>".format(
-            self.__class__.__name__,
-            self._device,
-            self._output,
-            self._stagesurf,
-            self._duplicator,
-        )
+        return f"<{self.__class__.__name__}:\n\t{self._device},\n\t{self._output},\n\t{self._stagesurf},\n\t{self._duplicator}\n>"

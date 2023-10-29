@@ -51,9 +51,4 @@ class Output:
         return self.rotation_mapping[self.desc.Rotation]
 
     def __repr__(self) -> str:
-        return "<{} Name:{} Resolution:{} Rotation:{}>".format(
-            self.__class__.__name__,
-            self.devicename,
-            self.resolution,
-            self.rotation_angle,
-        )
+        return f"<{self.__class__.__name__} Name:{self.devicename} Resolution:{self.resolution} Rotation:{self.rotation_angle}>"

@@ -34,7 +34,7 @@ class NumpyProcessor(Processor):
             size = pitch * width
 
         buffer = ctypes.string_at(rect.pBits, size)
-        pitch = pitch // 4
+        pitch //= 4
         if rotation_angle in (0, 180):
             image = np.ndarray((height, pitch, 4), dtype=np.uint8, buffer=buffer)
         elif rotation_angle in (90, 270):
@@ -57,5 +57,5 @@ class NumpyProcessor(Processor):
 
         if self.cvtcolor is not None:
             image = self.cvtcolor(image)
-            
+
         return image

@@ -73,9 +73,4 @@ class Device:
         return self.desc.VendorId
 
     def __repr__(self) -> str:
-        return "<{} Name:{} Dedicated VRAM:{}Mb VendorId:{}>".format(
-            self.__class__.__name__,
-            self.desc.Description,
-            self.desc.DedicatedVideoMemory // 1048576,
-            self.desc.VendorId,
-        )
+        return f"<{self.__class__.__name__} Name:{self.desc.Description} Dedicated VRAM:{self.desc.DedicatedVideoMemory // 1048576}Mb VendorId:{self.desc.VendorId}>"
